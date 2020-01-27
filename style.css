@@ -1,0 +1,71 @@
+:root {
+  --body-bg-color: #333;
+  --title-text-color: #f8f8ff;
+  --grid-bg-color: #fff;
+}
+
+/* GENERAL STYLES
+*******************************************************************************/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--body-bg-color);
+  min-height: 100vh;
+  overflow: auto;
+}
+
+/* TYPOGRAPHY
+*******************************************************************************/
+@font-face {
+  src: url("./3x5-V2-Regular.woff2") format("woff2");
+  font-family: "3x5";
+  font-weight: 400;
+}
+
+.c-btn {
+  display: inline-block;
+}
+
+.c-title {
+  width: 480px;
+}
+
+.c-title__heading {
+  display: grid;
+  grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
+  align-items: center;
+  text-align: center;
+  grid-gap: 20px;
+  width: 100%;
+  font-family: "3x5";
+  color: var(--title-text-color);
+}
+
+.c-title__heading::before,
+.c-title__heading::after {
+  content: "";
+  border-top: 2px solid;
+}
+
+.o-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 16), 1fr);
+  grid-template-rows: repeat(var(--grid-cols, 16), 1fr);
+  background-color: var(--grid-bg-color);
+  height: 560px;
+  width: 560px;
+  /* margin: auto; */
+}
+
+.c-grid__square {
+  border: 1px solid hsl(0, 0%, 0%, 5%);
+}
