@@ -48,14 +48,14 @@ input[type="number"] {
 /* TYPOGRAPHY
 *******************************************************************************/
 @font-face {
-  src: url("./3x5-V2-Regular.woff2") format("woff2");
+  src: url("../webfonts/3x5-V2-Regular.woff2") format("woff2");
   font-family: "3x5";
   font-weight: 400;
 }
 
 @font-face {
   font-family: "GothamPro";
-  src: url("./GothamPro-Medium.woff") format("woff");
+  src: url("../webfonts/GothamPro-Medium.woff") format("woff");
   font-weight: 500;
 }
 
@@ -168,7 +168,7 @@ input[type="number"] {
 }
 
 .c-size-modal {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -179,6 +179,10 @@ input[type="number"] {
   width: 100%;
   height: 100%;
   z-index: 9999;
+}
+
+.c-size-modal.c-size-modal--is-hidden {
+  display: none;
 }
 
 .c-size-modal__content {
@@ -196,6 +200,7 @@ input[type="number"] {
   color: var(--dark-text-color);
   margin: 1rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 .c-num-picker {

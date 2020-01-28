@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>TOP | Etch-a-Sketch</title>
   </head>
   <body>
@@ -13,8 +13,8 @@
     </div>
 
     <div class="c-options">
-      <button onclick="clearGrid()" class="c-btn">Clear</button>
-      <button onclick="setSize()" class="c-btn">Set Size</button>
+      <button onclick="clearAndResizeGrid()" class="c-btn">Clear</button>
+      <button onclick="openSizeModal()" class="c-btn">Set Size</button>
       <select class="c-dropdown js-dropdown" name="color" id="color">
         <option class="c-dropdown__option" value="black" selected>Black</option>
         <option class="c-dropdown__option" value="random">Random</option>
@@ -23,7 +23,7 @@
 
     <div class="c-grid js-grid"></div>
 
-    <div class="c-size-modal">
+    <div class="c-size-modal c-size-modal--is-hidden js-size-modal">
       <div class="c-size-modal__content">
         <h2 class="c-size-modal__heading">Enter a new grid size (8 - 64)</h2>
 
@@ -51,6 +51,8 @@
       </div>
     </div>
 
-    <script src="./main.js"></script>
+    <!-- jQuery -->
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>

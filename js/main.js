@@ -1,17 +1,34 @@
 const grid = document.querySelector(".js-grid");
 const colorDropdown = document.querySelector(".js-dropdown");
+const numPicker = document.querySelector(".js-num-picker");
+const numPickerInput = document.querySelector(".js-num-picker-input");
 const rootStyle = document.documentElement.style;
 
 let colorMode = colorDropdown.value;
 let size = 16;
 
-function clearGrid() {
+function clearAndResizeGrid() {
   grid.innerHTML = "";
   createGrid(size);
 }
 
+function openSizeModal() {
+  $(".js-size-modal")
+    .removeClass("c-size-modal--is-hidden")
+    .hide()
+    .fadeIn(300);
+}
+
+function closeSizeModal() {
+  $(".js-size-modal").fadeOut(200, () => {
+    $(this).addClass("c-size-modal--is-hidden");
+  });
+}
+
 function setSize() {
-  console.log("SET SIZE");
+  size = parseInt(numPickerInput.value);
+  closeSizeModal();
+  clearAndResizeGrid();
 }
 
 function createGrid(size) {
@@ -80,9 +97,49 @@ function updateColorMode(e) {
   colorMode = e.target.value;
 }
 
+function increaseNumPickerInputValue() {
+  let oldValue = parseInt(numPickerInput.value);
+  let step = parseInt(numPickerInput.getAttribute("step"));
+  let max = parseInt(numPickerInput.getAttribute("max"));
+  let newValue;
+  let changeEvent = new InputEvent("change", { bubbles: true });
+
+  if (oldValue + step > max) newValue = oldValue;
+  else newValue = oldValue + step;
+
+  numPickerInput.value = newValue;
+  numPickerInput.dispatchEvent(changeEvent);
+}
+
+function decreaseNumPickerInputValue() {
+  let oldValue = parseInt(numPickerInput.value);
+  let step = parseInt(numPickerInput.getAttribute("step"));
+  let min = parseInt(numPickerInput.getAttribute("min"));
+  let newValue;
+  let changeEvent = new InputEvent("change", { bubbles: true });
+
+  if (oldValue - step < min) newValue = oldValue;
+  else newValue = oldValue - step;
+
+  numPickerInput.value = newValue;
+  numPickerInput.dispatchEvent(changeEvent);
+}
+
+function updateNumPickerInput(e) {
+  if (e.target.classList.contains("js-num-picker-up")) {
+    increaseNumPickerInputValue();
+  } else if (e.target.classList.contains("js-num-picker-down")) {
+    decreaseNumPickerInputValue();
+  } else return false;
+}
+
+function validateNumPickerInput(e) {}
+
 function init() {
   grid.addEventListener("mouseover", updateGridSquare);
   colorDropdown.addEventListener("change", updateColorMode);
+  numPicker.addEventListener("click", updateNumPickerInput);
+  // numPickerInput.addEventListener("input", validateNumPickerInput);
   createGrid(size);
 }
 
