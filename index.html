@@ -8,10 +8,12 @@
     <title>TOP | Etch-a-Sketch</title>
   </head>
   <body>
+    <!-- Title -->
     <div class="c-title">
       <h1 class="c-title__heading">Etch-a-Sketch</h1>
     </div>
 
+    <!-- Options Menu -->
     <div class="c-options">
       <button onclick="clearAndResizeGrid()" class="c-btn">Clear</button>
       <button onclick="openSizeModal()" class="c-btn">Set Size</button>
@@ -21,9 +23,11 @@
       </select>
     </div>
 
+    <!-- Sketch Grid -->
     <div class="c-grid js-grid"></div>
 
-    <div class="c-size-modal c-size-modal--is-hidden js-size-modal">
+    <!-- Set Size Modal (initially hidden) -->
+    <form class="c-size-modal c-size-modal--is-hidden js-size-modal">
       <div class="c-size-modal__content">
         <h2 class="c-size-modal__heading">Enter a new grid size (8 - 64)</h2>
 
@@ -37,6 +41,7 @@
             max="64"
             step="1"
             value="16"
+            required
           />
           <div class="c-num-picker__btn-wrapper">
             <button class="c-num-picker__btn js-num-picker-up">+</button>
@@ -45,14 +50,15 @@
         </div>
 
         <div class="c-size-modal__buttons">
-          <button onclick="setSize()" class="c-btn">Ok</button>
+          <button type="submit" class="c-btn">Ok</button>
           <button onclick="closeSizeModal()" class="c-btn">Cancel</button>
         </div>
       </div>
-    </div>
+    </form>
 
     <!-- jQuery -->
     <script src="./js/jquery-3.4.1.min.js"></script>
+    <!-- Project Scripts -->
     <script src="./js/main.js"></script>
   </body>
 </html>

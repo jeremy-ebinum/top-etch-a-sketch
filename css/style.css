@@ -1,3 +1,5 @@
+/* VARIABLES
+*******************************************************************************/
 :root {
   --primary-color: hsl(190, 84%, 29%);
   --primary-color-darker: hsl(190, 84%, 19%);
@@ -61,6 +63,7 @@ input[type="number"] {
 
 /* COMPONENTS
 *******************************************************************************/
+/* Title */
 .c-title {
   width: 480px;
   margin-bottom: 0.75rem;
@@ -83,6 +86,7 @@ input[type="number"] {
   border-top: 2px solid;
 }
 
+/* Options Menu */
 .c-options {
   width: 100%;
   display: flex;
@@ -151,6 +155,7 @@ input[type="number"] {
   font-family: cursive;
 }
 
+/* Sketch Grid */
 .c-grid {
   display: grid;
   grid-template-columns: repeat(var(--grid-cell-num, 16), 1fr);
@@ -159,7 +164,6 @@ input[type="number"] {
   height: var(--grid-wh);
   width: var(--grid-wh);
   margin-bottom: 1.5rem;
-  /* margin: auto; */
 }
 
 .c-grid__square {
@@ -167,6 +171,7 @@ input[type="number"] {
   transition: all 0.1s ease;
 }
 
+/* Set Size Modal */
 .c-size-modal {
   display: flex;
   flex-direction: column;
@@ -203,6 +208,7 @@ input[type="number"] {
   text-align: center;
 }
 
+/* Num Picker (Custom input[type="number"]) */
 .c-num-picker {
   display: flex;
   justify-content: center;

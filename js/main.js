@@ -2,7 +2,9 @@ const grid = document.querySelector(".js-grid");
 const colorDropdown = document.querySelector(".js-dropdown");
 const numPicker = document.querySelector(".js-num-picker");
 const numPickerInput = document.querySelector(".js-num-picker-input");
+const sizeModal = document.querySelector(".js-size-modal");
 const rootStyle = document.documentElement.style;
+const bodyStyle = document.body.style;
 
 let colorMode = colorDropdown.value;
 let size = 16;
@@ -17,18 +19,15 @@ function openSizeModal() {
     .removeClass("c-size-modal--is-hidden")
     .hide()
     .fadeIn(300);
+  numPickerInput.value = size;
+  bodyStyle.overflow = "hidden";
 }
 
 function closeSizeModal() {
   $(".js-size-modal").fadeOut(200, () => {
     $(this).addClass("c-size-modal--is-hidden");
   });
-}
-
-function setSize() {
-  size = parseInt(numPickerInput.value);
-  closeSizeModal();
-  clearAndResizeGrid();
+  bodyStyle.overflow = "";
 }
 
 function createGrid(size) {
@@ -126,6 +125,7 @@ function decreaseNumPickerInputValue() {
 }
 
 function updateNumPickerInput(e) {
+  e.preventDefault();
   if (e.target.classList.contains("js-num-picker-up")) {
     increaseNumPickerInputValue();
   } else if (e.target.classList.contains("js-num-picker-down")) {
@@ -133,13 +133,23 @@ function updateNumPickerInput(e) {
   } else return false;
 }
 
-function validateNumPickerInput(e) {}
+function validateNumPickerInput(e) {
+  e.target.form.reportValidity();
+}
+
+function updateSize(e) {
+  e.preventDefault();
+  size = parseInt(numPickerInput.value);
+  closeSizeModal();
+  clearAndResizeGrid();
+}
 
 function init() {
   grid.addEventListener("mouseover", updateGridSquare);
   colorDropdown.addEventListener("change", updateColorMode);
   numPicker.addEventListener("click", updateNumPickerInput);
-  // numPickerInput.addEventListener("input", validateNumPickerInput);
+  numPickerInput.addEventListener("change", validateNumPickerInput);
+  sizeModal.addEventListener("submit", updateSize);
   createGrid(size);
 }
 
