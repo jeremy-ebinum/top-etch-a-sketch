@@ -66,7 +66,7 @@ input[type="number"] {
 /* Title */
 .c-title {
   width: 480px;
-  margin-bottom: 0.75rem;
+  margin: 0.75rem 0;
 }
 
 .c-title__heading {

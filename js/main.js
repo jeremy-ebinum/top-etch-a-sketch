@@ -96,7 +96,7 @@ function updateColorMode(e) {
   colorMode = e.target.value;
 }
 
-function increaseNumPickerInputValue() {
+const increaseNumPickerInputValue = () => {
   let oldValue = parseInt(numPickerInput.value);
   let step = parseInt(numPickerInput.getAttribute("step"));
   let max = parseInt(numPickerInput.getAttribute("max"));
@@ -108,9 +108,9 @@ function increaseNumPickerInputValue() {
 
   numPickerInput.value = newValue;
   numPickerInput.dispatchEvent(changeEvent);
-}
+};
 
-function decreaseNumPickerInputValue() {
+const decreaseNumPickerInputValue = () => {
   let oldValue = parseInt(numPickerInput.value);
   let step = parseInt(numPickerInput.getAttribute("step"));
   let min = parseInt(numPickerInput.getAttribute("min"));
@@ -122,15 +122,19 @@ function decreaseNumPickerInputValue() {
 
   numPickerInput.value = newValue;
   numPickerInput.dispatchEvent(changeEvent);
-}
+};
 
-function updateNumPickerInput(e) {
-  e.preventDefault();
-  if (e.target.classList.contains("js-num-picker-up")) {
-    increaseNumPickerInputValue();
-  } else if (e.target.classList.contains("js-num-picker-down")) {
-    decreaseNumPickerInputValue();
-  } else return false;
+function handleSizeModalButtons(e) {
+  if (e.target.classList.contains("js-num-picker-inp-up")) {
+    e.preventDefault();
+  } else if (e.target.classList.contains("js-num-picker-inp-down")) {
+    e.preventDefault();
+  } else if (e.target.classList.contains("js-close-size-modal")) {
+    e.preventDefault();
+    closeSizeModal();
+  } else if (e.target.classList.contains("js-submit-size")) {
+    updateSize(e);
+  }
 }
 
 function validateNumPickerInput(e) {
@@ -139,17 +143,50 @@ function validateNumPickerInput(e) {
 
 function updateSize(e) {
   e.preventDefault();
+  e.target.reportValidity();
   size = parseInt(numPickerInput.value);
   closeSizeModal();
   clearAndResizeGrid();
 }
 
+let timeout, interval;
+
+function clearTimers() {
+  clearTimeout(timeout);
+  clearInterval(interval);
+}
+
+function updateNumPickerOnHold(e) {
+  e.preventDefault();
+  let updateFunc;
+
+  if (e.target.classList.contains("js-num-picker-inp-up")) {
+    updateFunc = increaseNumPickerInputValue;
+  } else if (e.target.classList.contains("js-num-picker-inp-down")) {
+    updateFunc = decreaseNumPickerInputValue;
+  }
+
+  updateFunc();
+
+  timeout = setTimeout(function() {
+    interval = setInterval(function() {
+      updateFunc();
+    }, 50);
+  }, 300);
+
+  e.target.addEventListener("mouseup", clearTimers);
+  e.target.addEventListener("mouseleave", clearTimers);
+}
+
 function init() {
   grid.addEventListener("mouseover", updateGridSquare);
   colorDropdown.addEventListener("change", updateColorMode);
-  numPicker.addEventListener("click", updateNumPickerInput);
   numPickerInput.addEventListener("change", validateNumPickerInput);
   sizeModal.addEventListener("submit", updateSize);
+  sizeModal.addEventListener("click", handleSizeModalButtons);
+  document.querySelectorAll("[class*='js-num-picker-inp-']").forEach(elem => {
+    elem.addEventListener("mousedown", updateNumPickerOnHold);
+  });
   createGrid(size);
 }
 
