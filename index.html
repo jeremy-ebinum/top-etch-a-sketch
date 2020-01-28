@@ -13,8 +13,8 @@
     </div>
 
     <div class="c-options">
-      <button onclick="clearGrid()" class="c-options__btn">Clear</button>
-      <button onclick="setSize()" class="c-options__btn">Set Size</button>
+      <button onclick="clearGrid()" class="c-btn">Clear</button>
+      <button onclick="setSize()" class="c-btn">Set Size</button>
       <select class="c-dropdown js-dropdown" name="color" id="color">
         <option class="c-dropdown__option" value="black" selected>Black</option>
         <option class="c-dropdown__option" value="random">Random</option>
@@ -22,6 +22,34 @@
     </div>
 
     <div class="c-grid js-grid"></div>
+
+    <div class="c-size-modal">
+      <div class="c-size-modal__content">
+        <h2 class="c-size-modal__heading">Enter a new grid size (8 - 64)</h2>
+
+        <div class="c-num-picker js-num-picker">
+          <input
+            class="c-num-picker__input js-num-picker-input"
+            id="size"
+            name="size"
+            type="number"
+            min="8"
+            max="64"
+            step="1"
+            value="16"
+          />
+          <div class="c-num-picker__btn-wrapper">
+            <button class="c-num-picker__btn js-num-picker-up">+</button>
+            <button class="c-num-picker__btn js-num-picker-down">-</button>
+          </div>
+        </div>
+
+        <div class="c-size-modal__buttons">
+          <button onclick="setSize()" class="c-btn">Ok</button>
+          <button onclick="closeSizeModal()" class="c-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <script src="./main.js"></script>
   </body>
