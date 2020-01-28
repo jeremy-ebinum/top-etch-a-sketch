@@ -12,7 +12,16 @@
       <h1 class="c-title__heading">Etch-a-Sketch</h1>
     </div>
 
-    <div class="o-grid js-grid"></div>
+    <div class="c-options">
+      <button onclick="clearGrid()" class="c-options__btn">Clear</button>
+      <button onclick="setSize()" class="c-options__btn">Set Size</button>
+      <select class="c-dropdown js-dropdown" name="color" id="color">
+        <option class="c-dropdown__option" value="black" selected>Black</option>
+        <option class="c-dropdown__option" value="random">Random</option>
+      </select>
+    </div>
+
+    <div class="c-grid js-grid"></div>
 
     <script src="./main.js"></script>
   </body>
