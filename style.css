@@ -13,8 +13,7 @@
   --dropdown-px: 0.75rem;
   --grid-wh: 560px;
   --grid-bg-color: hsl(0, 0%, 100%);
-  --grid-cols: 16;
-  --grid-rows: 16;
+  --grid-cell-num: 16;
 }
 
 /* GENERAL STYLES
@@ -148,8 +147,8 @@ body {
 
 .c-grid {
   display: grid;
-  grid-template-columns: repeat(var(--grid-cols, 16), 1fr);
-  grid-template-rows: repeat(var(--grid-rows, 16), 1fr);
+  grid-template-columns: repeat(var(--grid-cell-num, 16), 1fr);
+  grid-template-rows: repeat(var(--grid-cell-num, 16), 1fr);
   background-color: var(--grid-bg-color);
   height: var(--grid-wh);
   width: var(--grid-wh);
@@ -158,5 +157,6 @@ body {
 }
 
 .c-grid__square {
-  border: 1px solid hsl(0, 0%, 0%, 5%);
+  border: 1px solid hsl(0, 0%, 0%, 1%);
+  transition: all 0.1s ease;
 }
