@@ -7,14 +7,18 @@
   --body-bg-color: hsl(109, 33%, 6%);
   --light-text-color: hsl(240, 100%, 99%);
   --dark-text-color: hsl(109, 33%, 6%);
+  --title-width: 480px;
+  --title-h-font-size: 2rem;
   --options-elem-py: 0.35rem;
   --options-elem-px: 0.75rem;
   --grid-wh: 560px;
   --grid-bg-color: hsl(0, 0%, 100%);
   --grid-cell-num: 16;
   --s-modal-bg-color: hsl(108, 13%, 15%, 95%);
+  --s-modal-h-font-size: 1.5rem;
   --num-picker-w: 45px;
   --num-picker-h: 42px;
+  --num-picker-inp-font-size: 0.9rem;
 }
 
 /* GENERAL STYLES
@@ -65,12 +69,13 @@ input[type="number"] {
 *******************************************************************************/
 /* Title */
 .c-title {
-  width: 480px;
+  width: var(--title-width, 480px);
   margin: 0.75rem 0;
 }
 
 .c-title__heading {
   display: grid;
+  font-size: var(--title-h-font-size, 2rem);
   grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
   align-items: center;
   text-align: center;
@@ -202,6 +207,7 @@ input[type="number"] {
 .c-size-modal__heading {
   font-family: "GothamPro";
   font-weight: 500;
+  font-size: var(--s-modal-h-font-size, 1.5rem);
   color: var(--dark-text-color);
   margin: 1rem;
   line-height: 1.4;
@@ -220,6 +226,7 @@ input[type="number"] {
   width: var(--num-picker-w);
   height: var(--num-picker-h);
   line-height: 1.65;
+  font-size: var(--num-picker-inp-font-size, 0.9rem);
   float: left;
   display: block;
   padding: 0;
@@ -263,4 +270,24 @@ input[type="number"] {
 
 .c-num-picker__btn:active {
   transform: scale(0.97);
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --grid-wh: 800px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --grid-wh: 1200px;
+    --title-width: 800px;
+    --title-h-font-size: 3rem;
+    --options-elem-py: 0.75rem;
+    --options-elem-px: 1.75rem;
+    --s-modal-h-font-size: 2rem;
+    --num-picker-w: 75px;
+    --num-picker-h: 50px;
+    --num-picker-inp-font-size: 1.1rem;
+  }
 }
